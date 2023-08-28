@@ -1,0 +1,65 @@
+There are 4 types of drivers are there:
+
+
+JDBC-ODBC- bridge driver
+
+Native-API driver
+
+Network protocol driver
+
+driver or thin driver
+
+
+whenever registering the driver : 
+it throws some exception that must be throws in the sqlexception bcoz of getConnection() method
+ and classnotfoundexception bcoz of forName
+
+Class.forName('com.mysql.cj.jdbc.driver');
+
+establish the connection create one database inside create table
+
+here we have to give the url username and password
+
+url ------> jdbc.mysql://localhost:3306/databasee name
+
+now we usee the query as select * from student 
+for this query we have to use the 
+
+method called executeQuery(write the query here)   
+
+then  store that in the resultset interface
+
+next() point out the record of the next student 
+
+this will makes tha we have to fetch the details of the student from the database 
+
+DDL --> Data Definition Language
+Changing the structure of ur database
+
+DML----->Data Manipulation Language
+change the value of the database
+eg: executeUpdate int return how many rows affected
+if u want to insert the record then use this method
+
+
+DQL----->Data Query language  
+fetching data 
+executeQuery() to get the details from the database
+
+
+preparedStatement --->changing the values frequently use preparedStatement here
+
+int userid=9;
+String userName="john";
+
+PreparedStatement pre = con.prepareStatement(query);
+insert into student values ?,?;
+
+pre.setInt(1,userId);
+pre.setString(2.username);
+
+int count = pre.executeUpdate();
+
+System.out.println(count);
+
+
