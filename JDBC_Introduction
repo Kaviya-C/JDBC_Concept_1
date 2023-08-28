@@ -1,0 +1,117 @@
+Java DataBase Connectivity JDBC
+
+Here am go through how the data from front end will fetch to the DataBase
+
+There are 6 steps to follows:
+
+step:1
+import the package---> 
+          import java.sql package;
+          
+step:2
+Load and register the mysql driver in eclipse
+Load----> com.mysql.cj.jdbc.driver
+Register---->  Class.forName(com.mysql.cj.jdbc.driver)
+
+
+Step:3
+Establish the connection 
+Connection con=DriverManager.getConnection()
+
+
+Step:4
+Create the statement  -->normal statement
+                      -->prepared statement
+
+                      --> callable statement
+
+step:5
+executet the query
+
+
+Step:6
+all this process give some response to us that is result
+
+
+Step:7
+close
+
+
+// How can be implement this steps in java program:
+
+1----------------->
+
+import java.sql.*;
+
+
+2------------------>
+right click on the project go to properties then click java build path ----> click classpath  --> then Add Library   ----> now select the mysql connector which is downloaded in the internet ----> apply and close
+
+public static void main(String...args)
+{
+
+     first have to register the mysql driver
+     the driver name is com.mysql.cj.jdbc.driver  
+
+     load above driver with the help of forName()
+     method.forName() is a method which wil load the driver
+
+
+     this forName() method belongs to class called as  Class
+
+    3------------------->
+     Class.forName('com.mysql.cj.jdbc.driver');
+     establish the collection
+     Connection is an interface ---> we are not able to create an object for interface
+
+
+     so we are not able to perform the 
+     Connection con=new Connection() ---> this is not applicable for interface 
+
+     so we have to find out the method which will give
+     me the object of connection..
+
+     someone has implemented the interface connection 
+     that method is:
+     
+     getConnection()  this is a method which wil give the object of a connection
+     getConnection() takes 3 parameter as an arguments
+     first: URL
+     second: Username
+     third:Password
+     getConnection is a static method which is there in DriverManager class
+
+     4----------------------->
+     Connection con = DriverManager.getConnection('url','kaviya','root');
+
+     //create an statement
+
+     Statement is an interface 
+     Statement stmt= con.createStatement();
+
+
+         //execute
+       5----------->
+       Resultset is an interface that holds this query
+       Resultset res = stmt.executeQuery('Select * from student');
+       // it holds the table
+
+
+       in student table have name and roll no of 3 students
+
+
+      6----------------->
+       // next() check the student having next student is available are there??
+       while(res.next()){
+        System.out.println(res.getInt()+' '+res.getString());
+       }
+
+
+       7----------------->
+       stmt.close();
+       con.close(); 
+
+}
+
+
+
